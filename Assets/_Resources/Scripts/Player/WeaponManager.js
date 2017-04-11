@@ -47,7 +47,6 @@ function Start (){
 	}	
 	
 	weaponsInUse[0] = weaponsInGame[selectWepSlot1];
-	weaponsInUse[1] = weaponsInGame[selectWepSlot2]; 
 
 	weaponToSelect = 0;
 	DeselectWeapon();
@@ -56,6 +55,10 @@ function Start (){
 
 function Update () {
 	if(Cursor.lockState == CursorLockMode.None) return;
+
+	if(weaponsInUse.length == 1){
+		canSwitch = false;
+	}
 	
 	if (Input.GetKeyDown("1") && weaponsInUse.length >= 1 && canSwitch && weaponToSelect != 0) {
         DeselectWeapon();
