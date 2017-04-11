@@ -3,7 +3,7 @@
 
 private var proneSpeed : int = 1;
 private var crouchSpeed : int = 4;
-var walkSpeed : int = 6;
+var walkSpeed : float = 6F;
 var runSpeed : int = 10;
 var jumpSpeed : float = 8.0;
 var airControlSpeed : float = 8.0;
@@ -381,6 +381,11 @@ function Update() {
 	
 	grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
 }	
+
+	function doBump(pAmp){
+		grounded = false;
+		moveDirection += Vector3(0, pAmp, 0);
+	}
 
 	function CheckDistance(){
 		var pos : Vector3 = myTransform.position + controller.center - Vector3(0, controller.height/2, 0);

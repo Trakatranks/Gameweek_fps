@@ -4,7 +4,8 @@
 var GO : GameObject;
 
 function ApplyDamage (s : float){
-	Action ();
+	print("ntm unity");
+	Action();
 }
 
 function Action(){
