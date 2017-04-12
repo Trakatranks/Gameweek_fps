@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Demigiant.meta
-guid: 2a59a8cfdf55a1f45b9057a089bdaf35
+guid: 42d427d211eb33f41aab9367054d440a
 folderAsset: yes
-timeCreated: 1491952557
-=======
-guid: c489a0325fc27f14e847d5d75db3009a
-folderAsset: yes
-timeCreated: 1491929461
->>>>>>> c4dc9b89fb305b6171f25e73eaec7c73a19bddaf:Assets/Prefabs.meta
+timeCreated: 1491984772
 licenseType: Free
 DefaultImporter:
   userData: 
