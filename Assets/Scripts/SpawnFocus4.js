@@ -2,6 +2,8 @@
 
 var EnemyFocus : GameObject;
 var Player : Transform;
+var scoreManager : GameObject;
+
 private var numEnemy = 0;
 private var timer=0;
 private var decreaseTimer=0;
@@ -35,6 +37,7 @@ function DelaySpawn()
         lRef=Instantiate(EnemyFocus);
         lRef.transform.position = transform.position;
         lRef.GetComponent(BehaviourFocus).Player=Player;
+		lRef.GetComponent(BehaviourFocus).scoreManager=scoreManager;
         timer=0;
                  
         numEnemy++;

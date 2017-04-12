@@ -5,6 +5,7 @@ private var timer = 0;
 var timeMax = 0;
 
 var explosion : GameObject;
+var scoreManager : GameObject; 
 private var activated : boolean = false;
 
 var moveSpeedMax : float = 0;
@@ -21,6 +22,7 @@ private var period : float = 0;
 var periodMin : float = 0;
 var periodMax : float = 0;
  
+private var touch = false;
 
 public class BehaviourFollow extends EnemyManager{
 
@@ -53,9 +55,18 @@ function OnTriggerEnter (other : Collider) {
 }
 
     function ApplyDamage(){
+
+	
+		var lTest = scoreManager.GetComponent(ScoreManager);
+		lTest.DrawCrosshair();
+		lTest.addScore(1);
+
+		print("APPLY");
+
         yield WaitForSeconds(.2);
         Explosion();
     }
+
 
     function Explosion(){
 		super();

@@ -1,7 +1,10 @@
 ﻿#pragma strict
 
 var EnemyFollow : GameObject;
+var EnemyFollowFast : GameObject;
 var Player : Transform;
+var scoreManager : GameObject;
+
 private var numEnemy = 0;
 private var timer=0;
 private var decreaseTimer=0;
@@ -31,9 +34,20 @@ function DelaySpawn()
     {
         delay = Random.Range(delayMin, delayMax);
         var lRef : GameObject;
-        lRef=Instantiate(EnemyFollow);
+
+		var enemy = Mathf.Floor(Random.Range(0f, 2f));
+
+		if(enemy == 0){
+			lRef=Instantiate(EnemyFollow);
+		}
+		else if(enemy == 1){
+			lRef=Instantiate(EnemyFollowFast);
+		}
+       
         lRef.transform.position = transform.position;
         lRef.GetComponent(BehaviourFollow).Player=Player;
+		lRef.GetComponent(BehaviourFollow).scoreManager=scoreManager;
+
         timer=0;
                  
         numEnemy++;

@@ -11,10 +11,10 @@ function Update () {
 }
 
 function Explosion(){
-
+	
 }
 
 function Destroy(){
 	Score++;
-	print("Score: " + Score);
+	
 }

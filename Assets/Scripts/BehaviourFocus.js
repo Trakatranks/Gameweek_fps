@@ -3,6 +3,7 @@
 var Player : Transform;
 
 var explosion : GameObject;
+var scoreManager : GameObject; 
 private var activated : boolean = false;
 
 var moveSpeedMax : float = 0;
@@ -18,6 +19,9 @@ var amplitudeMax : float = 0;
 private var period : float = 0;
 var periodMin : float = 0;
 var periodMax : float = 0;
+
+private var touch = false;
+
 
 public class BehaviourFocus extends EnemyManager{
 	function Start () 
@@ -44,17 +48,25 @@ public class BehaviourFocus extends EnemyManager{
 	
 	//________________EXPLOSION__________________________________________________
 	function OnTriggerEnter (other : Collider) { 
-	    if (other.CompareTag ("Player")) 
-	        Explosion();
+	    if (other.CompareTag ("Player")){
+			Explosion();
+		}      
 	}
 	
-	function ApplyDamage(){
-	        yield WaitForSeconds(.2);
-	        Explosion();
+	function ApplyDamage () {
+
+		var lTest = scoreManager.GetComponent(ScoreManager);
+		lTest.DrawCrosshair();
+		lTest.addScore(1);
+
+		print("APPLY");
+
+		yield WaitForSeconds(.2);
+	    Explosion();
 	}
+
 	
-	function Explosion(){
-			super();
+	function Explosion () {
 			print("EXPLOOOOOOO");
 	        if(activated) return;
 	        activated = true;
@@ -62,9 +74,5 @@ public class BehaviourFocus extends EnemyManager{
 	        Instantiate (explosion, transform.position, transform.rotation);
 	        Destroy(gameObject);
     }
-
-	override function Destroy(){
-		super();
-	}
 }
  
