@@ -40,12 +40,10 @@ public class BehaviourFocus extends EnemyManager{
 	
 		//print(amplitude*(Mathf.Sin(transform.position.x/period))+height);
 	
-	    transform.position.y = amplitude*(Mathf.Sin(transform.position.x/period))+height;
+	    //transform.position.y = amplitude*(Mathf.Sin(transform.position.x/period))+height;
 	    //transform.position.x= amplitude*(Mathf.Cos(transform.position.y/period))+height;
 	}
-	
-	
-	
+
 	//________________EXPLOSION__________________________________________________
 	function OnTriggerEnter (other : Collider) { 
 	    if (other.CompareTag ("Player")){
@@ -56,18 +54,14 @@ public class BehaviourFocus extends EnemyManager{
 	function ApplyDamage () {
 
 		var lTest = scoreManager.GetComponent(ScoreManager);
-		lTest.DrawCrosshair();
+		//lTest.DrawCrosshair();
 		lTest.addScore(1);
-
-		print("APPLY");
 
 		yield WaitForSeconds(.2);
 	    Explosion();
 	}
 
-	
 	function Explosion () {
-			print("EXPLOOOOOOO");
 	        if(activated) return;
 	        activated = true;
 	

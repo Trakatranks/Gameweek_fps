@@ -41,7 +41,7 @@ function PlayerDead(){
 
 function OnGUI(){
 	if(playerDead) return;
-	
+
 	GUI.skin = mySkin;
 	GUI.depth = 2;
 	

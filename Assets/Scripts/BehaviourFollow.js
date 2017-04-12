@@ -58,7 +58,7 @@ function OnTriggerEnter (other : Collider) {
 
 	
 		var lTest = scoreManager.GetComponent(ScoreManager);
-		lTest.DrawCrosshair();
+		//lTest.DrawCrosshair();
 		lTest.addScore(1);
 
 		print("APPLY");
