@@ -19,40 +19,52 @@ private var period : float = 0;
 var periodMin : float = 0;
 var periodMax : float = 0;
 
+public class BehaviourFocus extends EnemyManager{
+	function Start () 
+	{
+		super();
+	    moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
+	    amplitude = Random.Range(amplitudeMin, amplitudeMax);
+	    period = Random.Range(periodMin, periodMax);
+	}
+	
+	function Update () 
+	{
+	    transform.LookAt(Player);
+	    transform.position += transform.forward*moveSpeed*Time.deltaTime;  
+	    //transform.position.y = Mathf.Sin( transform.position.x / 2 ); ça fait un truc super marrant !
+	
+		//print(amplitude*(Mathf.Sin(transform.position.x/period))+height);
+	
+	    transform.position.y = amplitude*(Mathf.Sin(transform.position.x/period))+height;
+	    //transform.position.x= amplitude*(Mathf.Cos(transform.position.y/period))+height;
+	}
+	
+	
+	
+	//________________EXPLOSION__________________________________________________
+	function OnTriggerEnter (other : Collider) { 
+	    if (other.CompareTag ("Player")) 
+	        Explosion();
+	}
+	
+	function ApplyDamage(){
+	        yield WaitForSeconds(.2);
+	        Explosion();
+	}
+	
+	function Explosion(){
+			super();
+			print("EXPLOOOOOOO");
+	        if(activated) return;
+	        activated = true;
+	
+	        Instantiate (explosion, transform.position, transform.rotation);
+	        Destroy(gameObject);
+    }
+
+	override function Destroy(){
+		super();
+	}
+}
  
-function Start () 
-{
-    moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
-    amplitude = Random.Range(amplitudeMin, amplitudeMax);
-    period = Random.Range(periodMin, periodMax);
-}
-
-function Update () 
-{
-    transform.LookAt(Player);
-    transform.position += transform.forward*moveSpeed*Time.deltaTime;  
-    //transform.position.y = Mathf.Sin( transform.position.x / 2 ); ça fait un truc super marrant !
-    transform.position.y= amplitude*(Mathf.Sin(transform.position.x/period))+height;
-    //transform.position.x= amplitude*(Mathf.Cos(transform.position.y/period))+height;
-}
-
-
-
-//________________EXPLOSION__________________________________________________
-function OnTriggerEnter (other : Collider) { 
-    if (other.CompareTag ("Enemy") || other.CompareTag ("Player")) 
-        Explosion();
-}
-
-    function ApplyDamage(){
-        yield WaitForSeconds(.2);
-        Explosion();
-    }
-
-    function Explosion(){
-        if(activated) return;
-        activated = true;
-
-        Instantiate (explosion, transform.position, transform.rotation);
-        Destroy(gameObject);
-    }

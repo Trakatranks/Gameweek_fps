@@ -1,11 +1,20 @@
 ﻿#pragma strict
 
-var spawner = [];
+var Score : int = 0;
 
 function Start () {
-
+	
 }
 
 function Update () {
 	
+}
+
+function Explosion(){
+
+}
+
+function Destroy(){
+	Score++;
+	print("Score: " + Score);
 }

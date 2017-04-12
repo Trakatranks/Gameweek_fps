@@ -18,6 +18,8 @@ private var isDead : boolean = false;
 private var scoreManager : ScoreManager;
 var camShake : Transform;
 
+private var hurt = true;
+
 function Start(){
 	if(regeneration)
 		 hitPoints = maxHitPoints;
@@ -43,6 +45,14 @@ function PlayerDamage (damage : int) {
 	aSource.PlayOneShot(painSound, 1.0);
 	t = 2.0;		
 	
+	if (damage > 0){
+		hurt = true;
+	}
+	else
+	{
+		hurt = false;
+	}
+
 	if (hitPoints <= 0.0) Die();
 }
 
@@ -77,10 +87,12 @@ function OnGUI () {
 
     GUI.Label (Rect(40, Screen.height - 50,60,60)," Health: ");
 	GUI.Label (Rect(100, Screen.height - 50,60,60),"" +hitPoints.ToString("F0"), mySkin.customStyles[0]);
+
+	if(hurt){
+		GUI.color.a = alpha;
+		GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height), damageTexture);
+	}
 	
-	
-	//GUI.color.a = alpha;
-	//GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height), damageTexture);
 }
 
 

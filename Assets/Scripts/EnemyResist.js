@@ -1,8 +1,6 @@
 ﻿#pragma strict
 
 var Player : Transform;
-private var timer = 0;
-var timeMax = 0;
 
 var explosion : GameObject;
 private var activated : boolean = false;
@@ -20,31 +18,25 @@ var amplitudeMax : float = 0;
 private var period : float = 0;
 var periodMin : float = 0;
 var periodMax : float = 0;
+
  
-
-public class BehaviourFollow extends EnemyManager{
-
 function Start () 
 {
     moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
-    getTarget();
-}
- 
-function getTarget()
-{
-    transform.LookAt(Player);
+    amplitude = Random.Range(amplitudeMin, amplitudeMax);
+    period = Random.Range(periodMin, periodMax);
 }
 
 function Update () 
 {
-    timer++;
-    if(timer>=timeMax){
-        transform.LookAt(Player);
-        timer=0;
-    }
-  
-    transform.position += transform.forward*moveSpeed*(Time.deltaTime);  
+    transform.LookAt(Player);
+    transform.position += transform.forward*moveSpeed*Time.deltaTime;  
+    //transform.position.y = Mathf.Sin( transform.position.x / 2 ); ça fait un truc super marrant !
+    transform.position.y= amplitude*(Mathf.Sin(transform.position.x/period))+height;
+    //transform.position.x= amplitude*(Mathf.Cos(transform.position.y/period))+height;
 }
+
+
 
 //________________EXPLOSION__________________________________________________
 function OnTriggerEnter (other : Collider) { 
@@ -52,23 +44,21 @@ function OnTriggerEnter (other : Collider) {
         Explosion();
 }
 
-    function ApplyDamage(){
+    function ApplyDamage(damage : int){
+
+	print(damage);
+	if(damage < 3){
+		return;
+	}
+
         yield WaitForSeconds(.2);
         Explosion();
     }
 
     function Explosion(){
-		super();
         if(activated) return;
         activated = true;
 
         Instantiate (explosion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
-	override function Destroy(){
-		super();
-	}
-
-
-}
