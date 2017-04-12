@@ -1,22 +1,42 @@
 ﻿#pragma strict
 
 var Player : Transform;
-var MoveSpeed = 0;
-var MaxDist = 10;
-var MinDist = 5;
+
 var explosion : GameObject;
 private var activated : boolean = false;
+
+var moveSpeedMax : float = 0;
+var moveSpeedMin : float =0;
+private var moveSpeed : float;
+
+private var height : float = 1.60;
+
+private var amplitude : float = 0;
+var amplitudeMin : float = 0;
+var amplitudeMax : float = 0;
+
+private var period : float = 0;
+var periodMin : float = 0;
+var periodMax : float = 0;
+
  
 function Start () 
 {
-
+    moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
+    amplitude = Random.Range(amplitudeMin, amplitudeMax);
+    period = Random.Range(periodMin, periodMax);
 }
 
 function Update () 
 {
     transform.LookAt(Player);
-    transform.position += transform.forward*MoveSpeed*Time.deltaTime;  
+    transform.position += transform.forward*moveSpeed*Time.deltaTime;  
+    //transform.position.y = Mathf.Sin( transform.position.x / 2 ); ça fait un truc super marrant !
+    transform.position.y= amplitude*(Mathf.Sin(transform.position.x/period))+height;
+    //transform.position.x= amplitude*(Mathf.Cos(transform.position.y/period))+height;
 }
+
+
 
 //________________EXPLOSION__________________________________________________
 function OnTriggerEnter (other : Collider) { 

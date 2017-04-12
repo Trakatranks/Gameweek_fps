@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var EnemyFocus : GameObject;
+var EnemyFollow : GameObject;
 var Player : Transform;
 private var numEnemy = 0;
 private var timer=0;
@@ -22,9 +22,9 @@ function DelaySpawn()
     {
         delay = Random.Range(0.0, 100.0);
         var lRef : GameObject;
-        lRef=Instantiate(EnemyFocus);
+        lRef=Instantiate(EnemyFollow);
         lRef.transform.position = transform.position;
-        lRef.GetComponent(BehaviourFocus).Player=Player;
+        lRef.GetComponent(BehaviourFollow).Player=Player;
         timer=0;
                  
         numEnemy++;
@@ -37,3 +37,4 @@ function Update () {
     DelaySpawn();
 	
 }
+

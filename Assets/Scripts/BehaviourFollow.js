@@ -1,18 +1,30 @@
 ﻿#pragma strict
 
 var Player : Transform;
-var MoveSpeed = 0;
-var MaxDist = 10;
-var MinDist = 5;
+private var timer = 0;
+var timeMax = 0;
+
 var explosion : GameObject;
-var timer =0;
-var timeMax = 60;
 private var activated : boolean = false;
+
+var moveSpeedMax : float = 0;
+var moveSpeedMin : float =0;
+private var moveSpeed : float;
+
+private var height : float = 1.60;
+
+private var amplitude : float = 0;
+var amplitudeMin : float = 0;
+var amplitudeMax : float = 0;
+
+private var period : float = 0;
+var periodMin : float = 0;
+var periodMax : float = 0;
  
 function Start () 
 {
+    moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
     getTarget();
-    //MoveSpeed=Math.Random()*MaxDist;
 }
  
 function getTarget()
@@ -28,12 +40,7 @@ function Update ()
         timer=0;
     }
   
-    transform.position += transform.forward*MoveSpeed*(Time.deltaTime);  
-}
-
-function OnCollisionEnter()
-{
-    getTarget();
+    transform.position += transform.forward*moveSpeed*(Time.deltaTime);  
 }
 
 //________________EXPLOSION__________________________________________________
