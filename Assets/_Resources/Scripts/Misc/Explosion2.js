@@ -23,7 +23,7 @@ function Start () {
 		hitPoints *= explosionDamage;
 
 		// Tell the rigidbody or any other script attached to the hit object how much damage is to be applied!
-		hit.SendMessageUpwards("ApplyDamage", hitPoints, SendMessageOptions.DontRequireReceiver);
+		if(explosionDamage != 0) hit.SendMessageUpwards("ApplyDamage", hitPoints, SendMessageOptions.DontRequireReceiver);
 		hit.SendMessageUpwards("PlayerDamage", hitPoints, SendMessageOptions.DontRequireReceiver);
 		hit.SendMessageUpwards("Shake", hitPoints, SendMessageOptions.DontRequireReceiver);
 	}

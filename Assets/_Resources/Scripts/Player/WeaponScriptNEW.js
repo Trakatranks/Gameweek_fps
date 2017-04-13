@@ -44,6 +44,9 @@ var aimMode : Aim = Aim.Simple;
 	var zoomSpeed : float = 0.5;
 	var FOV : int = 40;
 	var weaponFOV : int = 45;
+
+	var crosshairInZoom : boolean = false;
+	var dynamicCrosshair : boolean = true;
 	
 	private var scopeTime : float;
 	private var inScope : boolean = false;
@@ -197,6 +200,7 @@ function Update(){
 			curVect = aimPosition - transform.localPosition;
 			scopeTime = Time.time + aimSpeed;
 		}
+
 		if (transform.localPosition != aimPosition && aiming){
 			if(Mathf.Abs(Vector3.Distance(transform.localPosition , aimPosition)) < curVect.magnitude/aimSpeed * Time.deltaTime){
 				transform.localPosition = aimPosition;
@@ -295,8 +299,7 @@ function LateUpdate(){
     if (m_LastFrameShot == Time.frameCount){
         muzzleFlash.transform.localRotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
         muzzleFlash.enabled = true;
-        muzzleLight.enabled = true;	
-        Debug.Log("TRACE");
+        muzzleLight.enabled = true;
     }
     else{
         muzzleFlash.enabled = false;
@@ -331,11 +334,18 @@ function OnGUI (){
 				var position2 : Rect = Rect((Screen.width - w)/2,(Screen.height + h)/2 + (triggerTime * adjustMaxCroshairSize), w, h);
 				var position3 : Rect = Rect((Screen.width - w)/2 - (triggerTime * adjustMaxCroshairSize) - w,(Screen.height - h )/2, w, h);
 				var position4 : Rect = Rect((Screen.width - w)/2,(Screen.height - h)/2 - (triggerTime * adjustMaxCroshairSize) - h, w, h);
-				if (!aiming) { 
-					GUI.DrawTexture(position1, crosshairFirstModeHorizontal); 	//Right
-					GUI.DrawTexture(position2, crosshairFirstModeVertical); 	//Up
-					GUI.DrawTexture(position3, crosshairFirstModeHorizontal); 	//Left
-					GUI.DrawTexture(position4, crosshairFirstModeVertical);		//Down
+				if (!aiming || crosshairInZoom) {
+					if (dynamicCrosshair){
+						GUI.DrawTexture(position1, crosshairFirstModeHorizontal); 	//Right
+						GUI.DrawTexture(position2, crosshairFirstModeVertical); 	//Up
+						GUI.DrawTexture(position3, crosshairFirstModeHorizontal); 	//Left
+						GUI.DrawTexture(position4, crosshairFirstModeVertical);		//Down
+					} else {
+						var CrossW : float = crosshairSecondMode.width/2;
+						var CrossH : float = crosshairSecondMode.height/2;
+						var CrossPos : Rect = Rect((Screen.width - CrossW)/2,(Screen.height - CrossH )/2, CrossW, CrossH);
+						GUI.DrawTexture(CrossPos, crosshairSecondMode);
+					}
 				}
 			}
 		}
@@ -633,8 +643,6 @@ function FireProjectile (){
 	if (projectiles < 1 || draw){	
 		return; 
 	}
-	
-	Debug.Log("FIRE PROJ3");
 
 	var info : float[] = new float[2];
 	info[0] = projectileSpeed;
