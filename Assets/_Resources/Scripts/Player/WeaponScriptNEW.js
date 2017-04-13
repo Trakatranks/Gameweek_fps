@@ -1,6 +1,9 @@
+import UnityEngine.UI;
 #pragma strict
 // FPS KIT [www.armedunity.com]
 
+
+var ball_txt : Text;
 enum fireMode { none, semi, auto, burst, shotgun, launcher}
 @HideInInspector
 var currentMode = fireMode.semi;
@@ -163,6 +166,9 @@ function Start(){
 }	
 	
 function Update(){
+	
+	ball_txt.text = ""+bulletsPerMag;
+
 	if(selected){
 		if(Cursor.lockState == CursorLockMode.None) return;
 		
@@ -349,7 +355,7 @@ function OnGUI (){
 				}
 			}
 		}
-
+		/*
 		if(firstMode != fireMode.none && firstMode != fireMode.launcher || secondMode != fireMode.none && secondMode != fireMode.launcher){
 			GUI.Label (Rect(Screen.width - 200,Screen.height-35,200,80),"Bullets : ");
 			GUI.Label (Rect(Screen.width - 110,Screen.height-35,200,80),"" + bulletsLeft, style1);
@@ -364,7 +370,7 @@ function OnGUI (){
 		if(firstMode == fireMode.launcher || secondMode == fireMode.launcher){
 			GUI.Label (Rect(Screen.width - 200,Screen.height-95,200,80),"Projectiles : ");
 			GUI.Label (Rect(Screen.width - 110,Screen.height-95,200,80),"" + projectiles, style1);
-		}
+		}*/
 	}	
 }
 
