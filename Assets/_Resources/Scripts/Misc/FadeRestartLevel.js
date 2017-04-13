@@ -23,7 +23,7 @@ function Update () {
 		tempTime = Mathf.InverseLerp(0.0, fadeTime, time);
 	}
 	
-	if(tempTime >= 1.0) SceneManager.LoadScene(0, LoadSceneMode.Single);
+	if(tempTime >= 1.0) SceneManager.LoadScene("VictoryScreen");
 }
 
 function OnGUI(){

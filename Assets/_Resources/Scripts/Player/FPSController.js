@@ -384,6 +384,7 @@ function Update() {
 
 		
 	function doBump(pAmp:Vector3){
+		//blur.enabled = true;
 		grounded = false;
 		moveDirection = pAmp;
 	}
