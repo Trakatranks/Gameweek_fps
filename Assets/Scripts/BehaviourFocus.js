@@ -57,7 +57,7 @@ public class BehaviourFocus extends EnemyManager{
 		//lTest.DrawCrosshair();
 		lTest.addScore(1);
 
-		yield WaitForSeconds(.2);
+		yield WaitForSeconds(.3);
 	    Explosion();
 	}
 

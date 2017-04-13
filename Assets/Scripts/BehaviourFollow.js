@@ -63,7 +63,7 @@ function OnTriggerEnter (other : Collider) {
 
 		print("APPLY");
 
-        yield WaitForSeconds(.2);
+        yield WaitForSeconds(.3);
         Explosion();
     }
 
