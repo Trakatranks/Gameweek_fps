@@ -1,10 +1,9 @@
 ﻿#pragma strict
 
-public var player: GameObject;
-public var amplitude:int;
+public var amp:Vector3;
 
 function OnTriggerEnter (other : Collider) {
 	if (other.CompareTag ("Player"))
-	    player.SendMessage("doBump", amplitude);
+	    other.gameObject.SendMessage("doBump", amp);
 	
 }

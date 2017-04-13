@@ -109,7 +109,7 @@ function Start () {
 }
 
 function Update() {
-	
+
     //RenderSettings.skybox.SetFloat("_Rotation", Time.time * 10.0f);
 
 	velMagnitude = controller.velocity.magnitude;
@@ -382,9 +382,10 @@ function Update() {
 	grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
 }	
 
-	function doBump(pAmp){
+		
+	function doBump(pAmp:Vector3){
 		grounded = false;
-		moveDirection += Vector3(0, pAmp, 0);
+		moveDirection = pAmp;
 	}
 
 	function CheckDistance(){
