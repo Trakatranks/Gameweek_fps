@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class UILogoAnim : MonoBehaviour {
 
     public Transform TitleScreen_logo, TitleScreen_littleLogo, TitleScreen_btnPlay, TitleScreen_btnCredit, TitleScreen_btnQuit;
     public Transform CreditScreen_logo, CreditScreen_title, CreditScreen_text, CreditScreen_btnBack;
     public Transform VictoryScreen_btnReplay, VictoryScreen_btnBack, VictoryScreen_nbr_combo, VictoryScreen_combo, VictoryScreen_score;
+    
+    public Transform HUD_life, HUD_ball, HUD_boost, HUD_score;
 
     // Use this for initialization
     void Start () {
@@ -32,6 +35,11 @@ public class UILogoAnim : MonoBehaviour {
         StartAnimBtnComboMaxVictory();
         StartAnimScoreVictory();
         StartAnimBtnQuitVictory();
+
+        StartAnimHudLife();
+        StartAnimHudBall();
+        StartAnimHudBoost();
+        StartAnimHudScore();
     }
     #region titleScreen
     public void StartAnimLogo(){
@@ -138,8 +146,32 @@ public class UILogoAnim : MonoBehaviour {
         sequence.SetLoops(-1, LoopType.Yoyo);
     }
     #endregion
+
+    #region Hud
+
+    public void StartAnimHudLife()
+    {
+
+    }
+
+    public void StartAnimHudBall()
+    {
+
+    }
+
+    public void StartAnimHudBoost()
+    {
+        Sequence sequenceHudBoost = DOTween.Sequence();
+        sequenceHudBoost.Append(HUD_boost.DOMoveY(290, 0.1f));
+        sequenceHudBoost.SetLoops(-1, LoopType.Restart);
+    }
+
+    public void StartAnimHudScore()
+    {
+
+    }
+    #endregion
     // Update is called once per frame
     void Update () {
-		
 	}
 }

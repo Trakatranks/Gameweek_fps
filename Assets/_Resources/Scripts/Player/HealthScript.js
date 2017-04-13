@@ -1,7 +1,10 @@
+import UnityEngine.UI;
+
 #pragma strict
 // FPS KIT [www.armedunity.com]
 
 var hitPoints : float;
+var life_txt : Text;
 var maxHitPoints : int;
 var regeneration : boolean = false;
 var regenerationSpeed : float;
@@ -32,6 +35,8 @@ function Update(){
 		alpha = t;
 	}
 	
+    life_txt.text = "" + hitPoints;
+
 	if(regeneration){
 		if( hitPoints < maxHitPoints)
 			hitPoints += Time.deltaTime * regenerationSpeed;
@@ -81,7 +86,7 @@ function Die () {
 	Destroy(gameObject);
 }
 
-
+/*
 function OnGUI () {
     GUI.skin = mySkin;
 
@@ -93,7 +98,7 @@ function OnGUI () {
 		GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height), damageTexture);
 	}
 	
-}
+}*/
 
 
 function PlayerFallDamage(dam : float){
