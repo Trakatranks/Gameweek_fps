@@ -6,6 +6,8 @@ import UnityEngine.UI;
 @header("UI TEXT")
 public var score_txt : Text;
 public var multiply_txt : Text;
+public var multiplyBack_txt : Text;
+public var imageCombo : Image;
 
 @header("VICTORY SCREEN")
 public var score_victory : Text;
@@ -20,6 +22,9 @@ var bestCombo :  float = 0.0f;
 var countCombo : int = 0;
 var nbrCombo : float = 0.0f;
 var multiplyCombo : float = 0.0f;
+
+var alpha = 0.0f;
+var cligno = 0;
 
 var hitCrosshairTexture : Texture;
 private var alphaHit : float;
@@ -39,24 +44,36 @@ function Start(){
     if (score_victory != null) score_victory.text = "" + currentScore;
     if (bestCombo_victory != null) bestCombo_victory.text = "" + bestCombo;
     if (nbrCombo_victory != null) nbrCombo_victory.text = "" + countCombo;
+    if (imageCombo != null) imageCombo.color.a = 0.0f;
 }
 
 function Update () {
 	if (alphaHit > 0) 
 	    alphaHit -= Time.deltaTime;
+	if (score_victory == null){
+	    if (timer <= 0) {
+	        if (nbrCombo > bestCombo) bestCombo = nbrCombo;
+	        multiplyCombo = 1 + (nbrCombo / 100.0f);
+	        addRealScore(newScore, multiplyCombo);
+	        newScore = 0.0f;
+	        nbrCombo = 0.0f;
+	        multiplyCombo = 0.0f;
 
-	if (timer <= 0) {
-	    if (nbrCombo > bestCombo) bestCombo = nbrCombo;
-	    multiplyCombo = 1 + (nbrCombo / 100.0f);
-	    addRealScore(newScore, multiplyCombo);
-	    newScore = 0.0f;
-	    nbrCombo = 0.0f;
-	    countCombo++;
-	    multiplyCombo = 0.0f;
-	    if (multiply_txt != null) multiply_txt.text = "" + multiplyCombo;
-	}else{
-	    timer--;
+	        if (multiply_txt != null) multiply_txt.text = "" + multiplyCombo;
+	        if (multiplyBack_txt != null) multiplyBack_txt.text = "" + multiplyCombo;
+	    }else{
+	        timer--;
+	    }
+	    alpha = timer / 500.0f;
+	    print(alpha);
+	    if (imageCombo != null) imageCombo.color.a = alpha;
+	    if (multiply_txt != null) multiply_txt.color.a = alpha;
+	    if (multiplyBack_txt != null) multiplyBack_txt.color.a = alpha;
 	}
+}
+
+function Awake () {
+    DontDestroyOnLoad (this.gameObject);
 }
 
 function DrawCrosshair(){
@@ -67,8 +84,7 @@ function DrawCrosshair(){
 
 function addRealScore(val : int, mult : int){
     currentScore += (val * mult);
-    
-    if (score_txt != null) score_txt.text = "SCORE : " + currentScore;
+    if (score_txt != null) score_txt.text = "" + currentScore;
 
 	if(currentScore >= pointsToNextRank){
 		lvl++;
@@ -80,7 +96,9 @@ function addRealScore(val : int, mult : int){
 function setTimer(){
     timer = 500;
     nbrCombo++;
+    countCombo++;
     if (multiply_txt != null) multiply_txt.text = "" + multiplyCombo;
+    if (multiplyBack_txt != null) multiplyBack_txt.text = "" + multiplyCombo;
 }
 
 function addScore(val : int){
