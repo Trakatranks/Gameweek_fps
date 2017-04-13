@@ -34,14 +34,14 @@ function Start ()
  
 function getTarget()
 {
-    transform.LookAt(Player);
+	transform.LookAt(Player);
 }
 
 function Update () 
 {
     timer++;
     if(timer>=timeMax){
-        transform.LookAt(Player);
+        getTarget();
         timer=0;
     }
   
