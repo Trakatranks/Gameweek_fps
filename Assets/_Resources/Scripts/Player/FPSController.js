@@ -105,7 +105,7 @@ function Start () {
     slideLimit = controller.slopeLimit - .2;
 	walkRunAnim.wrapMode = WrapMode.Loop;
 	walkRunAnim.Stop();
-	cameraAnimations[runAnimation].speed = 0.8;
+	cameraAnimations[runAnimation].speed = 1;
 }
 
 function Update() {
@@ -297,8 +297,8 @@ function Update() {
 			walkRunAnim.CrossFade(idleAnimation);
 		}
 		
-		if(run && velMagnitude > walkSpeed){
-			walkRunAnim.CrossFade("Run");
+		if(velMagnitude > walkSpeed){
+			walkRunAnim.CrossFade(runAnimation);
 			cameraAnimations.CrossFade(runAnimation);
 		}else{
 			cameraAnimations.CrossFade(idleAnimation);

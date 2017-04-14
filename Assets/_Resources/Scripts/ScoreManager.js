@@ -76,6 +76,10 @@ function Awake () {
     DontDestroyOnLoad (this.gameObject);
 }
 
+function Die(g : GameObject) {
+	g.SendMessage("UpdateScore", currentScore);
+}
+
 function DrawCrosshair(){
 	yield WaitForSeconds(0.05);
 	alphaHit = 1.0;

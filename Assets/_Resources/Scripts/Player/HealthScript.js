@@ -89,19 +89,19 @@ function Die () {
 	Destroy(gameObject);
 }
 
-/*
+
 function OnGUI () {
     GUI.skin = mySkin;
 
-    GUI.Label (Rect(40, Screen.height - 50,60,60)," Health: ");
-	GUI.Label (Rect(100, Screen.height - 50,60,60),"" +hitPoints.ToString("F0"), mySkin.customStyles[0]);
+    /*GUI.Label (Rect(40, Screen.height - 50,60,60)," Health: ");
+	GUI.Label (Rect(100, Screen.height - 50,60,60),"" +hitPoints.ToString("F0"), mySkin.customStyles[0]);*/
 
 	if(hurt){
-		GUI.color.a = alpha;
+		GUI.color.a = alpha/2;
 		GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height), damageTexture);
 	}
 	
-}*/
+}
 
 
 function PlayerFallDamage(dam : float){
