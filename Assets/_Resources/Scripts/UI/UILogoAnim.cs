@@ -80,7 +80,7 @@ public class UILogoAnim : MonoBehaviour {
     {
         Sequence sequenceAnimLogoCredit = DOTween.Sequence();
         sequenceAnimLogoCredit.Append(CreditScreen_logo.DOMoveY(170, 2));
-        sequenceAnimLogoCredit.Join(CreditScreen_logo.DORotate(new Vector3(0, 125, 0), 1));
+        sequenceAnimLogoCredit.Join(CreditScreen_logo.DORotate(new Vector3(0, -10, 0), 1));
         sequenceAnimLogoCredit.SetLoops(-1, LoopType.Yoyo);
     }
 
@@ -94,8 +94,8 @@ public class UILogoAnim : MonoBehaviour {
     public void StartAnimTextCredit()
     {
         Sequence sequenceAnimBtnPlayCredit = DOTween.Sequence();
-        sequenceAnimBtnPlayCredit.Append(CreditScreen_text.DOMoveY(243, 2));
-        sequenceAnimBtnPlayCredit.Join(CreditScreen_text.DORotate(new Vector3(0, 50, 0), 1));
+        //sequenceAnimBtnPlayCredit.Append(CreditScreen_text.DOMoveY(190, 2));
+        sequenceAnimBtnPlayCredit.Join(CreditScreen_text.DORotate(new Vector3(0, -10, 0), 1));
         sequenceAnimBtnPlayCredit.SetLoops(-1, LoopType.Yoyo);
     }
 

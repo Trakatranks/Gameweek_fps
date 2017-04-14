@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour {
 
     protected void Init()
     {
-        Debug.Log("UIManager Start");
     }
 
     public void ToScene(string pScene)
