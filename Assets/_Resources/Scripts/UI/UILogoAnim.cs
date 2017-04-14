@@ -64,7 +64,7 @@ public class UILogoAnim : MonoBehaviour {
 
     public void StartAnimBtnCredit(){
         Sequence sequenceAnimBtnCredit = DOTween.Sequence();
-        sequenceAnimBtnCredit.Append(TitleScreen_btnCredit.DOMoveY(70, 2));
+        sequenceAnimBtnCredit.Append(TitleScreen_btnCredit.DOMoveY(80, 2));
         sequenceAnimBtnCredit.SetLoops(-1, LoopType.Yoyo);
     }
 
