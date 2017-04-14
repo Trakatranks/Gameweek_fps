@@ -46,17 +46,20 @@ function Update(){
 function PlayerDamage (damage : int) {
 	if (hitPoints < 0.0) return;
 	
-	hitPoints -= damage;
-	aSource.PlayOneShot(painSound, 1.0);
-	t = 2.0;		
-	
 	if (damage > 0){
 		hurt = true;
+		hitPoints -= damage;
+		aSource.PlayOneShot(painSound, 1.0);
 	}
 	else
 	{
 		hurt = false;
 	}
+
+
+	t = 2.0;		
+	
+	
 
 	if (hitPoints <= 0.0) Die();
 }

@@ -385,6 +385,7 @@ function Update() {
 		
 	function doBump(pAmp:Vector3){
 		//blur.enabled = true;
+		aSource.PlayOneShot(bodyHitSound, 1.0);
 		grounded = false;
 		moveDirection = pAmp;
 	}
