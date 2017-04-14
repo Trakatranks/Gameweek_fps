@@ -161,9 +161,9 @@ public class UILogoAnim : MonoBehaviour {
 
     public void StartAnimHudBoost()
     {
+        HUD_boost.position = new Vector3(HUD_boost.position.x, 290, HUD_boost.position.z);
         Sequence sequenceHudBoost = DOTween.Sequence();
-        sequenceHudBoost.Append(HUD_boost.DOMoveY(290, 0.1f));
-        sequenceHudBoost.SetLoops(-1, LoopType.Restart);
+        sequenceHudBoost.Append(HUD_boost.DOMoveY(220, 0.1f));
     }
 
     public void StartAnimHudScore()

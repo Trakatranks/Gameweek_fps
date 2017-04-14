@@ -61,8 +61,6 @@ function OnTriggerEnter (other : Collider) {
 		//lTest.DrawCrosshair();
 		lTest.addScore(1);
 
-		print("APPLY");
-
         yield WaitForSeconds(.3);
         Explosion();
     }

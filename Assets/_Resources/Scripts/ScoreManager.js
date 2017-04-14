@@ -37,6 +37,7 @@ var lvl : int = 0;
 var levelUpSound : AudioClip;
 private var playerDead : boolean = false;
 var aSource : AudioSource;
+var TweenManager : GameObject;
 
 function Start(){
     if (score_txt != null) score_txt.text = "" + currentScore;
@@ -104,6 +105,10 @@ function setTimer(){
 function addScore(val : int){
     newScore += val;
     multiplyCombo = 1 + (nbrCombo / 100.0f);
+
+	var t = GameObject.Find("--TweenManager");
+	t.SendMessage("StartAnimHudBoost");
+
     setTimer();
 }
 
