@@ -66,7 +66,6 @@ function Update () {
 	        timer--;
 	    }
 	    alpha = timer / 500.0f;
-	    print(alpha);
 	    if (imageCombo != null) imageCombo.color.a = alpha;
 	    if (multiply_txt != null) multiply_txt.color.a = alpha;
 	    if (multiplyBack_txt != null) multiplyBack_txt.color.a = alpha;
